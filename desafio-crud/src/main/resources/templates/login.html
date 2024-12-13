@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Login</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Exibe mensagens de erro -->
+                    <div th:if="${param.error}" class="alert alert-danger" th:text="'Invalid username or password'"></div>
+                    <!-- Exibe mensagens de sucesso -->
+                    <div th:if="${param.message}" class="alert alert-success" th:text="${param.message}"></div>
+
+                    <!-- Formulário de login -->
+                    <form method="post" th:action="@{/login}">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input class="form-control" id="username" name="username" required type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input class="form-control" id="password" name="password" required type="password" />
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit">Login</button>
+                    </form>
+
+                    <!-- Botão de Cadastro -->
+                    <div class="text-center mt-3">
+                        <a th:href="@{/users/new}" class="btn btn-outline-secondary btn-block">Create an Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

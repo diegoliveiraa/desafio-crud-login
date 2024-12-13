@@ -32,6 +32,7 @@ public class StudentController {
 
     @PostMapping
     public String createStudent(@ModelAttribute StudentDTO studentDTO) {
+        System.out.println("Tentando criar estudante");
         studentService.createStudent(studentDTO);
         return "redirect:/students";
     }
@@ -60,36 +61,3 @@ public class StudentController {
         return "redirect:/students";
     }
 }
-
-
-
-/*public class StudentController {
-
-    @Autowired
-    private StudentService service;
-
-    @PostMapping
-    public ResponseEntity<Student> createStudent(@RequestBody StudentDTO createData){
-        Student newStudent = service.createStudent(createData);
-        return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Student>> getAllStudent(){
-        List<Student> students = this.service.getAllStudent();
-        return new ResponseEntity<>(students, HttpStatus.OK);
-    }
-
-    @PutMapping
-    public  ResponseEntity<Student> updateStudent(@RequestBody StudentDTO updateData){
-        Student updateStudent = this.service.updateStudent(updateData);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @DeleteMapping
-    public ResponseEntity<Student> deleteStudent(@RequestBody StudentDTO deleteData){
-        Student deleteStudent = this.service.deleteStudent(deleteData);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-}*/

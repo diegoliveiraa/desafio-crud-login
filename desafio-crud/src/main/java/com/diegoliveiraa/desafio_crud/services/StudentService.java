@@ -23,24 +23,19 @@ public class StudentService {
     }
 
     public Student createStudent(StudentDTO createData) {
-
         Date birthday = formatBirthday(createData.birthday());
-
 
         Address address = this.cepService.findAdressByCep(createData.cep());
         System.out.println("Resposta do ViaCEP: " + address);
-
 
         if (address == null || address.getLocalidade() == null) {
             throw new RuntimeException("Cidade não encontrada para o CEP " + createData.cep());
         }
 
-
         Student newStudent = new Student(createData);
         newStudent.setBirthday(birthday);
         newStudent.setCep(address.getCep());
         newStudent.setCity(address.getLocalidade());
-
 
         this.repository.save(newStudent);
         return newStudent;
